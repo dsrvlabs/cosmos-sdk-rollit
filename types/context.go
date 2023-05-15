@@ -71,6 +71,20 @@ func (c Context) BlockHeader() tmproto.Header {
 	return *msg
 }
 
+// ValidatorHash returns a validator hash in latest block
+func (c Context) ValidatorsHash() tmbytes.HexBytes {
+	hash := make([]byte, len(c.header.ValidatorsHash))
+	copy(hash, c.header.ValidatorsHash)
+	return hash
+}
+
+// ValidatorHash returns a app hash in latest block
+func (c Context) AppHash() tmbytes.HexBytes {
+	hash := make([]byte, len(c.header.AppHash))
+	copy(hash, c.header.AppHash)
+	return hash
+}
+
 // HeaderHash returns a copy of the header hash obtained during abci.RequestBeginBlock
 func (c Context) HeaderHash() tmbytes.HexBytes {
 	hash := make([]byte, len(c.headerHash))
